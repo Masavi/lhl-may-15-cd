@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# M09W23 | Advanced Topic: DevOps
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Topics to cover
 
-## Available Scripts
+- [X] 1. What is DevOps?
+- [X] 2. What does a DevOps engineer do?
+- [X] 3. Deploying a React App using Firebase
+- [X] 4. Building our own Continuous Deployment (CD) Pipeline with Firebase and Github Actions
+- [X] 5. Q&A
 
-In the project directory, you can run:
+### 1. What is DevOps?
 
-### `npm start`
+From [Wikipedia](https://en.wikipedia.org/wiki/DevOps):
+> DevOps is a methodology in the software development and IT industry. Used as a set of practices and tools, DevOps integrates and automates the work of software development (Dev) and IT operations (Ops) as a means for improving and shortening the systems development life cycle.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 2. What does a DevOps engineer do?
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+A DevOps engineer introduces processes, tools, and methodologies to balance needs throughout the software development life cycle, from coding and deployment, to maintenance and updates.
 
-### `npm test`
+They monitor health and track everything happening in all system parts during the software lifecycle.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### 3. Deploying a React App using Firebase
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Open the React project that you want to deploy in VS Code. It is a mandatory requisite to run the app and ensure that everything's up-to-date and that your application is not throwing any errors and/or is showing warning messages.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Once everything's running smoothly, open a terminal window and follow the next commands:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+# Create the "build" folder, for production
+$ npm run build
 
-### `npm run eject`
+# Install firebase tools locally
+$ npm i firebase-tools -D
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Log into your Firebase/Google Account
+$ node_modules/.bin/firebase login
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Configure Firebase Hosting
+$ node_modules/.bin/firebase init hosting
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Deploy
+$ node_modules/.bin/firebase deploy --only hosting
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 4. Building our own Continuous Deployment (CD) Pipeline with Firebase and Github Actions
 
-## Learn More
+For this automation, it is necesary that your React Application is already pushed to a Github Repo. Go into the "Settings" tab of your repo and select, in the "Actions" subsection the "General" settings.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Inside "General", you'll find "Workflow permissions". Select the option for "Read and write permissions" and hit the Save button at the end.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Now, using the same terminal, use the following command:
 
-### Code Splitting
+```
+# Create the "build" folder, for production
+$ firebase init hosting:github
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 5. Q&A: How to deploy a database?
 
-### Analyzing the Bundle Size
+Bear in mind that in the scenario that frontend, backend and database all run separately on their own server, each app will be deployed separately. They all can be hosted in the same service or using different services.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- For frontend applications, you can use Firebase, Netlify, or any other service.
 
-### Making a Progressive Web App
+- For backend applications, I recommend Heroku, Firebase or any other service.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- For PostgreSQL databases you can use ElephantSQL.
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
